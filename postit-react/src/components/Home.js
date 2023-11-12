@@ -46,14 +46,22 @@ const Home = () => {
     try {
       await program.rpc.initialize(title, content, {
         accounts: {
-          customer: baseAccount.publicKey,
+          baseAccount: baseAccount.publicKey,
           signer: provider.wallet.publicKey,
           systemProgram: SystemProgram.programId,
         },
         signers: [baseAccount],
       });
 
-      fetchPosts();
+      const post = await program.account.post.fetch(baseAccount.publicKey);
+      console.log("post", post);
+      setPosts([
+        {
+          account: { title: post.title, content: post.content },
+          publicKey: baseAccount.publicKey,
+        },
+        ...posts,
+      ]);
     } catch (err) {
       console.log("Transaction error: ", err);
     }

@@ -7,10 +7,9 @@ pub mod postit_solana {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>, title: String, content: String) -> Result<()> {
-        let customer: &mut Account<'_, Post> = &mut ctx.accounts.customer;
-        customer.title = title;
-        customer.content = content;
-
+        let base_account: &mut Account<'_, Post> = &mut ctx.accounts.base_account;
+        base_account.title = title;
+        base_account.content = content;
         Ok(())
     }
 }
@@ -18,7 +17,7 @@ pub mod postit_solana {
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init, payer=signer, space=264)]
-    pub customer: Account<'info, Post>,
+    pub base_account: Account<'info, Post>,
     #[account(mut)]
     pub signer: Signer<'info>,
     pub system_program: Program<'info, System>,

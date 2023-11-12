@@ -6,7 +6,7 @@ export const idl = {
       "name": "initialize",
       "accounts": [
         {
-          "name": "customer",
+          "name": "baseAccount",
           "isMut": true,
           "isSigner": true
         },
