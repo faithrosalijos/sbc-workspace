@@ -82,7 +82,7 @@ const Home = () => {
 
   useEffect(() => {
     if (wallet.connected) fetchPosts();
-  }, [wallet.connected]);
+  }, [wallet.connected, fetchPosts]);
 
   return (
     <div className="bg-slate-900 h-screen overflow-auto py-12">

@@ -17,7 +17,7 @@ function App() {
         () => [
             new PhantomWalletAdapter(),
         ],
-        [solNetwork]
+        []
     );
 
     return (
